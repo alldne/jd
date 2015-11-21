@@ -4,7 +4,7 @@ function jd() {
 
 function _jd() {
   if [[ ${COMP_WORDS[COMP_CWORD]} != -* ]] ; then
-    COMPREPLY=( `jd.py 5 ${COMP_WORDS[COMP_CWORD]}` )
+    COMPREPLY=( `jd.py ${JD_DEPTH:=5} ${COMP_WORDS[COMP_CWORD]}` )
     return 0
   fi
 }
