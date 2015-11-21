@@ -20,8 +20,14 @@ def getdir(root, keyword, depth):
 
     result = []
     if depth > 1:
-        for dir in filter(os.path.isdir, [os.path.join(root, d) for d in os.listdir(root)]):
+        try:
+            dirs = os.listdir(root)
+        except OSError:
+            return []
+
+        for dir in filter(os.path.isdir, [os.path.join(root, d) for d in dirs]):
             result += getdir(dir, keyword, depth - 1)
+
     result += filter(os.path.isdir, glob.glob(os.path.join(root, keyword)+'*'))
     return result
 
