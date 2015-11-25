@@ -3,8 +3,10 @@ function jd() {
 }
 
 function _jd() {
-  compadd -U "$@" `jd.py ${JD_DEPTH:=5} $words[CURRENT]`
-  return 0
+    if [[ $words[CURRENT] != -* ]] ; then
+        compadd -U "$@" `jd.py ${JD_DEPTH:=5} $words[CURRENT]`
+        return 0
+    fi
 }
 
 compdef _jd jd
